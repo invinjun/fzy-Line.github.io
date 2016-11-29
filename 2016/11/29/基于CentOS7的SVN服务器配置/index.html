@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux;SVN," />
+  <meta name="keywords" content="Linux,SVN," />
 
 
 
@@ -90,15 +90,15 @@
 <meta property="og:url" content="https://fzy-line.github.io/2016/11/29/基于CentOS7的SVN服务器配置/index.html">
 <meta property="og:site_name" content="Line's Blog">
 <meta property="og:description" content="SVN是Subversion的简称，它是一个受欢迎的开放源代码的版本控制系统。简单一点说，SVN就是用于多个人共同开发同一个项目，共用资源的目的。作为软件开发人员，很有必要了解和学习SVN的使用。学习版本控制从SVN安装与配置开始，此篇博客主要讲解基于阿里云服务器的SVN服务器配置。">
-<meta property="og:image" content="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-1.png">
-<meta property="og:image" content="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-2.png">
-<meta property="og:image" content="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-3.png">
-<meta property="og:image" content="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-4-467x600.png">
-<meta property="og:updated_time" content="2016-11-29T07:11:54.346Z">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-1.png">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-2.png">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-3.png">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-4.png">
+<meta property="og:updated_time" content="2016-11-29T07:36:58.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于CentOS7的SVN服务器配置">
 <meta name="twitter:description" content="SVN是Subversion的简称，它是一个受欢迎的开放源代码的版本控制系统。简单一点说，SVN就是用于多个人共同开发同一个项目，共用资源的目的。作为软件开发人员，很有必要了解和学习SVN的使用。学习版本控制从SVN安装与配置开始，此篇博客主要讲解基于阿里云服务器的SVN服务器配置。">
-<meta name="twitter:image" content="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-1.png">
+<meta name="twitter:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-1.png">
 
 
 
@@ -406,18 +406,18 @@
 <p>下载地址：<a href="https://tortoisesvn.net/downloads.html" target="_blank" rel="external">https://tortoisesvn.net/downloads.html</a></p>
 <p>（2）新建一个文件夹用来存放版本库文件</p>
 <p>（3）右键选择SVN Checkout</p>
-<p><img src="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-1.png" alt="16830-1" width="218" height="368" class="alignnone size-full wp-image-561"></p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-1.png" alt="30-1"></p>
 <p>（4）填写SVN地址</p>
-<p><img src="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-2.png" alt="16830-2" width="454" height="381" class="alignnone size-full wp-image-562"></p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-2.png" alt="30-2"></p>
 <p>格式为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn://服务器ip地址/服务器上版本库名称/</div></pre></td></tr></table></figure>
 <p>（5）输入用户名密码</p>
-<p><img src="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-3.png" alt="16830-3" width="336" height="234" class="alignnone size-full wp-image-563"></p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-3.png" alt="30-3"></p>
 <p>可以勾选保存账号密码，如果你只用一个账号的话可以这么做，如果需要经常切换账户的话最好不要勾选。</p>
 <p>如果已经勾选了，但是又需要切换账户，怎么办呢？</p>
 <p>右键菜单：<br>Settings -&gt; Saved Data-&gt; Authentication data -&gt; Clear</p>
 <p>（6）在repo文件夹下进行版本控制操作</p>
-<p><img src="http://www.line-coding.tech/wp-content/uploads/2016/08/16830-4-467x600.png" alt="16830-4" width="467" height="600" class="alignnone size-medium wp-image-564"></p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/8/30-4.png" alt="30-4"></p>
 <p>可以将服务器上的文件通过SVN Update更新到本地，也可以将本地文件通过SVN commit提交到服务器，还有很多的操作，在这里就不一一讲解了，下次写一篇详细的博客进行介绍。</p>
 <p>注：文件上传到服务器后存放在服务器什么地方呢？</p>
 <p>一般放在版本库路径下的db文件夹的revs文件夹中，例如我的为/var/svn/repo/db/revs。</p>
@@ -451,7 +451,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux-SVN/" rel="tag"># Linux;SVN</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/SVN/" rel="tag"># SVN</a>
           
         </div>
       
@@ -553,7 +555,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
