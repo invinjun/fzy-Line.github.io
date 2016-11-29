@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="［Android,SharedPreferences］," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.jpg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SharedPreferences是一种轻型的数据存储方式，它的本质是基于xml文件存储的key-value键值对数据，它的使用非常简单,能够轻松的存放数据和读取数据。App都有相应的配置文件，但是由于App的配置信息并不多，如果采用数据库来存放并不划算，因为数据库连接跟操作等耗时大大影响了程序的效率，因此通常使用SharedPreferences来存储一些简单的配置信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android数据存储之SharedPreferences">
+<meta property="og:url" content="https://fzy-line.github.io/2016/07/21/Android数据存储之SharedPreferences/index.html">
+<meta property="og:site_name" content="Line's Blog">
+<meta property="og:description" content="SharedPreferences是一种轻型的数据存储方式，它的本质是基于xml文件存储的key-value键值对数据，它的使用非常简单,能够轻松的存放数据和读取数据。App都有相应的配置文件，但是由于App的配置信息并不多，如果采用数据库来存放并不划算，因为数据库连接跟操作等耗时大大影响了程序的效率，因此通常使用SharedPreferences来存储一些简单的配置信息。">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-1.jpg">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-2.jpg">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-3.jpg">
+<meta property="og:updated_time" content="2016-11-29T14:27:33.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android数据存储之SharedPreferences">
+<meta name="twitter:description" content="SharedPreferences是一种轻型的数据存储方式，它的本质是基于xml文件存储的key-value键值对数据，它的使用非常简单,能够轻松的存放数据和读取数据。App都有相应的配置文件，但是由于App的配置信息并不多，如果采用数据库来存放并不划算，因为数据库连接跟操作等耗时大大影响了程序的效率，因此通常使用SharedPreferences来存储一些简单的配置信息。">
+<meta name="twitter:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fzy-line.github.io/2016/07/21/Android数据存储之SharedPreferences/"/>
+
+
+
+
+
+  <title> Android数据存储之SharedPreferences | Line's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Line's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Coding,Enjoy Life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/07/21/Android数据存储之SharedPreferences/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Line">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/logo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Line's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Line's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android数据存储之SharedPreferences
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-21T22:11:35+08:00">
+                2016-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SharedPreferences是一种轻型的数据存储方式，它的本质是基于xml文件存储的key-value键值对数据，它的使用非常简单,能够轻松的存放数据和读取数据。App都有相应的配置文件，但是由于App的配置信息并不多，如果采用数据库来存放并不划算，因为数据库连接跟操作等耗时大大影响了程序的效率，因此通常使用SharedPreferences来存储一些简单的配置信息。</p>
+<a id="more"></a>
+<h4 id="使用SharedPreferences保存数据"><a href="#使用SharedPreferences保存数据" class="headerlink" title="使用SharedPreferences保存数据"></a>使用SharedPreferences保存数据</h4><h5 id="获得SharedPreferences对象"><a href="#获得SharedPreferences对象" class="headerlink" title="获得SharedPreferences对象"></a>获得SharedPreferences对象</h5><p>使用getSharedPreferences方法得到SharedPreferences对象，该方法有两个参数，第一个参数是文件名，第二个参数是权限模式。文件名不需要加后缀，系统在生成该文件时会自动加上.xml后缀。</p>
+<h6 id="SharedPreferences的四种操作模式"><a href="#SharedPreferences的四种操作模式" class="headerlink" title="SharedPreferences的四种操作模式:"></a>SharedPreferences的四种操作模式:</h6><p><strong>Context.MODE_PRIVATE：</strong>为默认操作模式,代表该文件是私有数据,只能被应用本身访问,在该模式下,写入的内容会覆盖原文件的内容.</p>
+<p><strong>Context.MODE_APPEND：</strong>模式会检查文件是否存在,存在就往文件追加内容,否则就创建新文件.</p>
+<p>Context.MODE_WORLD_READABLE和Context.MODE_WORLD_WRITEABLE用来控制其他应用是否有权限读写该文件.</p>
+<p><strong>Context.MODE_WORLD_READABLE：</strong>表示当前文件可以被其他应用读取.</p>
+<p><strong>Context.MODE_WORLD_WRITEABLE：</strong>表示当前文件可以被其他应用写入.</p>
+<h5 id="获取Editor对象，并使用相应的方法来创建、修和清除数据"><a href="#获取Editor对象，并使用相应的方法来创建、修和清除数据" class="headerlink" title="获取Editor对象，并使用相应的方法来创建、修和清除数据"></a>获取Editor对象，并使用相应的方法来创建、修和清除数据</h5><p>调用该SharedPreferences对象的Editor接口得到一个Editor对象，使用该对象有putInt，putString等putXxx方法来存储键值对信息，通过remove()方法来移除一个键值对，或者通过clear()方法来清除数据等。</p>
+<h5 id="使用commit-方法提交数据。"><a href="#使用commit-方法提交数据。" class="headerlink" title="使用commit()方法提交数据。"></a>使用commit()方法提交数据。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SharedPreferences sharedPreferences = getSharedPreferences(&quot;mysp&quot;,Context.MODE_PRIVATE);</div><div class="line">Editor editor=sharedPreferences.edit();</div><div class="line">editor.putString(&quot;name&quot;, &quot;fzy&quot;);</div><div class="line">editor.putString(&quot;age&quot;, &quot;22&quot;);</div><div class="line">editor.commit();    //提交数据</div></pre></td></tr></table></figure>
+<p>记得每次更改数据后都要调用editor对象的commit()方法提交数据，执行以上代码后，SharedPreferences将会把这些数据保存在mysp.xml文件中，可以打开eclipse的DDMS工具在File Explorer的data/data/相应的包名/shared_prefs/mysp.xml 下导出该文件，并查看。（如下图红色箭头标注）</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-1.jpg" alt="21-1"></p>
+<p>我们可以将此xml文件导出来看看，点击右上角pull a file from the device(如下图蓝色箭头标注)</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-2.jpg" alt="21-2"></p>
+<h4 id="从SharedPreferences获取数据"><a href="#从SharedPreferences获取数据" class="headerlink" title="从SharedPreferences获取数据"></a>从SharedPreferences获取数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SharedPreferences sharedPreferences=getSharedPreferences(&quot;mysp&quot;, Context.MODE_PRIVATE);</div><div class="line">String name=sharedPreferences.getString(&quot;name&quot;, &quot;defaultname&quot;);</div><div class="line">String age=sharedPreferences.getString(&quot;age&quot;, &quot;0&quot;);</div><div class="line">System.out.println(&quot;name: &quot;+ name + &quot;,age: &quot; + age);</div></pre></td></tr></table></figure>
+<p>取出结果如下：</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/7/21-3.jpg" alt="21-3"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/［Android-SharedPreferences］/" rel="tag"># ［Android,SharedPreferences］</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/17/Python爬虫利器-BeautifulSoup/" rel="next" title="Python爬虫利器---BeautifulSoup">
+                <i class="fa fa-chevron-left"></i> Python爬虫利器---BeautifulSoup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/24/Python操作Mysql数据库/" rel="prev" title="Python操作Mysql数据库">
+                Python操作Mysql数据库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.jpg"
+               alt="Line" />
+          <p class="site-author-name" itemprop="name">Line</p>
+          <p class="site-description motion-element" itemprop="description">fzy-line</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用SharedPreferences保存数据"><span class="nav-number">1.</span> <span class="nav-text">使用SharedPreferences保存数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获得SharedPreferences对象"><span class="nav-number">1.1.</span> <span class="nav-text">获得SharedPreferences对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SharedPreferences的四种操作模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">SharedPreferences的四种操作模式:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取Editor对象，并使用相应的方法来创建、修和清除数据"><span class="nav-number">1.2.</span> <span class="nav-text">获取Editor对象，并使用相应的方法来创建、修和清除数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用commit-方法提交数据。"><span class="nav-number">1.3.</span> <span class="nav-text">使用commit()方法提交数据。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从SharedPreferences获取数据"><span class="nav-number">2.</span> <span class="nav-text">从SharedPreferences获取数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Line</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

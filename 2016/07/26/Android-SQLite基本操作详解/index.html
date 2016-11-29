@@ -1,0 +1,792 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="［Android,SQLite］," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.jpg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SQLite 是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。之前写过一个简单的Android记事本程序，使用过SQLite数据库，但是并没有真正理解并消化。前段时间认真学习了Mysql数据库的相关知识，对数据库有了更深入的认识，于是，也准备把Android这一块的SQLite数据库好好整理一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android SQLite基本操作详解">
+<meta property="og:url" content="https://fzy-line.github.io/2016/07/26/Android-SQLite基本操作详解/index.html">
+<meta property="og:site_name" content="Line's Blog">
+<meta property="og:description" content="SQLite 是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。之前写过一个简单的Android记事本程序，使用过SQLite数据库，但是并没有真正理解并消化。前段时间认真学习了Mysql数据库的相关知识，对数据库有了更深入的认识，于是，也准备把Android这一块的SQLite数据库好好整理一下。">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/26-1.jpg">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/26-2.jpg">
+<meta property="og:updated_time" content="2016-11-29T14:21:56.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android SQLite基本操作详解">
+<meta name="twitter:description" content="SQLite 是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。之前写过一个简单的Android记事本程序，使用过SQLite数据库，但是并没有真正理解并消化。前段时间认真学习了Mysql数据库的相关知识，对数据库有了更深入的认识，于是，也准备把Android这一块的SQLite数据库好好整理一下。">
+<meta name="twitter:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/26-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fzy-line.github.io/2016/07/26/Android-SQLite基本操作详解/"/>
+
+
+
+
+
+  <title> Android SQLite基本操作详解 | Line's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Line's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Coding,Enjoy Life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/07/26/Android-SQLite基本操作详解/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Line">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/logo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Line's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Line's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android SQLite基本操作详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-26T22:11:59+08:00">
+                2016-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　SQLite 是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。之前写过一个简单的Android记事本程序，使用过SQLite数据库，但是并没有真正理解并消化。前段时间认真学习了Mysql数据库的相关知识，对数据库有了更深入的认识，于是，也准备把Android这一块的SQLite数据库好好整理一下。</p>
+<a id="more"></a>
+<p>SQLite支持的数据类型：</p>
+<p>NULL(空值)、INTEGER(整型值)、REAL(浮点值)、TEXT(字符串值)、BLOB(二进制对象)</p>
+<h4 id="数据库创建与管理"><a href="#数据库创建与管理" class="headerlink" title="数据库创建与管理"></a>数据库创建与管理</h4><p>使用辅助类SQLiteOpenHelper来管理数据库的创建和版本更新，在工程中新建一个类SQLiteUtil用于管理数据库，继承自SQLiteOpenHelper。</p>
+<h5 id="必须实现构造方法"><a href="#必须实现构造方法" class="headerlink" title="必须实现构造方法"></a>必须实现构造方法</h5><p>public DatabaseHelper(Context context, String name, CursorFactory factory, int version) </p>
+<h5 id="重写两个抽象方法"><a href="#重写两个抽象方法" class="headerlink" title="重写两个抽象方法"></a>重写两个抽象方法</h5><p>public void onCreate(SQLiteDatabase db)，方法当数据库第一次被建立的时候被执行，一般把创建表,初始化数据等操作放在这里。</p>
+<p>public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)方法，当数据库版本更新时会自动执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">public class SQLiteUtil extends SQLiteOpenHelper&#123;</div><div class="line"></div><div class="line">    public static final String TABLE_NAME_STUDENT = &quot;student&quot;;</div><div class="line">    </div><div class="line">    public static final String COLUMN_NAME_ID = &quot;_id&quot;;</div><div class="line">    public static final String COLUMN_NOTE_NO = &quot;Sno&quot;;</div><div class="line">    public static final String COLUMN_NOTE_NAME = &quot;Sname&quot;;</div><div class="line">    public static final String COLUMN_NOTE_AGE = &quot;Sage&quot;;</div><div class="line">    public static final String COLUMN_NOTE_SEX = &quot;Ssex&quot;;</div><div class="line">    </div><div class="line">    public SQLiteUtil(Context context, String name, CursorFactory factory,int version) &#123;</div><div class="line">        super(context, name, factory, version);</div><div class="line">        // TODO Auto-generated constructor stub</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void onCreate(SQLiteDatabase db) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        //在这里创建数据库，后文会用到</div><div class="line">        db.execSQL(&quot;CREATE TABLE &quot; + TABLE_NAME_STUDENT + &quot;(&quot; </div><div class="line">                    + COLUMN_NAME_ID + &quot; INTEGER PRIMARY KEY AUTOINCREMENT,&quot;</div><div class="line">                    + COLUMN_NOTE_NO + &quot; TEXT NOT NULL DEFAULT \&quot;\&quot;,&quot;</div><div class="line">                    + COLUMN_NOTE_NAME + &quot; TEXT NOT NULL DEFAULT \&quot;\&quot;,&quot; </div><div class="line">                    + COLUMN_NOTE_AGE + &quot; INTEGER NOT NULL,&quot;</div><div class="line">                    + COLUMN_NOTE_SEX + &quot; TEXT NOT NULL DEFAULT \&quot;男\&quot;&quot; </div><div class="line">                    + &quot;)&quot; );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)&#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        //在这里更新数据库版本</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个类被实例化的时候，系统会检测这个数据库是否存在，如果已经存在就不再创建，如果不存在则创建。还会检测数据库的版本，当版本号不同时会执行更新操作。</p>
+<h4 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h4><p>SQLiteDataBase类提供了大量的API来操控SQLite数据库,每一个SQLiteDatabase的实例就代表了一个数据库(对应底层的一个数据库文件)，一旦应用程序获得了SQLiteDatabase对象，就可以通过该对象来操作与之相对应的数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SQLiteUtil mSqLiteUtil = new SQLiteUtil(this, &quot;fzy&quot;, null, 1);</div><div class="line">SQLiteDatabase db = mSqLiteUtil.getWritableDatabase();  //得到一个SQLiteDatabase对象</div></pre></td></tr></table></figure>
+<h5 id="基本操作写法一"><a href="#基本操作写法一" class="headerlink" title="基本操作写法一"></a>基本操作写法一</h5><p>对于插入、删除和更新来说都可以通过executeSQL方法执行sql语句来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.executeSQL(String sql);  </div><div class="line">db.executeSQL(String sql, Object[] bindArgs);  //sql语句中使用占位符，然后第二个参数是实际的参数集</div></pre></td></tr></table></figure>
+<p>查询可以使用rawQuery方法执行sql语句来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.rawQuery(String sql, String[] selectionArgs);</div></pre></td></tr></table></figure>
+<p>将所有的SQL语句都组织到一个字符串中，使用占位符代替实际参数，selectionArgs就是占位符实际参数集。</p>
+<h5 id="基本操作写法二"><a href="#基本操作写法二" class="headerlink" title="基本操作写法二"></a>基本操作写法二</h5><p>除了统一的形式之外，他们还有各自的操作方法：</p>
+<h6 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.insert(String table, String nullColumnHack, ContentValues values);</div></pre></td></tr></table></figure>
+<p>第一个参数都是表示要操作的表名，第二个参数表示如果插入的数据每一列都为空的话，需要指定此行中某一列的名称，系统将此列设置为NULL，不至于出现错误，第三个参数ContentValues类型的变量，是键值对组成的Map，key代表列名，value代表该列要插入的值。</p>
+<h6 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.delete(String table, String whereClause, String whereArgs);</div></pre></td></tr></table></figure>
+<p>第一个参数都是表示要操作的表名，第二个参数是用来指定删除条件，传递空值时将删除所有行，第三个参数是删除条件的数组值，将与第二个参数组成条件字符串。</p>
+<h6 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.update(String table, Contentvalues values, String whereClause, String whereArgs);</div></pre></td></tr></table></figure>
+<p>第一个参数都是表示要操作的表，第二个参数ContentValues类型的变量，是键值对组成的Map，key代表列名，value代表该列要插入的值。第三个参数用来指定更新条件，传递空值将更新所有行。第四个参数是更新条件的数组值，将与第三个参数组成条件字符串。</p>
+<h6 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h6><p>查询有很多不同参数的方法，这里只列举一例，其他的可以参考官方文档查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy);</div></pre></td></tr></table></figure></p>
+<p>第一个参数都是表示要操作的表名，第二个参数表示要查询的列所有名称集，第三个参数selection表示WHERE之后的条件语句，可以使用占位符，groupBy指定分组的列名，having指定分组条件，配合groupBy使用，orderBy指定排序的列名，limit指定分页参数，distinct可以指定“true”或“false”表示要不要过滤重复值。需要注意的是，selection、groupBy、having、orderBy、limit这几个参数中不包括“WHERE”、“GROUP BY”、“HAVING”、“ORDER BY”、“LIMIT”等SQL关键字。</p>
+<h5 id="结果集的处理"><a href="#结果集的处理" class="headerlink" title="结果集的处理"></a>结果集的处理</h5><p>最后，他们同时返回一个Cursor对象，代表数据集的游标，有点类似于JavaSE中的ResultSet。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>move(int offset)</td>
+<td>以当前位置为参考,移动到指定行</td>
+</tr>
+<tr>
+<td>moveToFirst()</td>
+<td>移动到第一行 </td>
+</tr>
+<tr>
+<td>moveToLast()</td>
+<td>动到最后一行</td>
+</tr>
+<tr>
+<td>moveToPosition(int position)</td>
+<td>移动到指定行 </td>
+</tr>
+<tr>
+<td>moveToPrevious()</td>
+<td>移动到前一行  </td>
+</tr>
+<tr>
+<td>moveToNext()</td>
+<td>移动到下一行  </td>
+</tr>
+<tr>
+<td>isFirst()</td>
+<td>是否指向第一条  </td>
+</tr>
+<tr>
+<td>isLast()</td>
+<td>是否指向最后一条  </td>
+</tr>
+<tr>
+<td>isBeforeFirst()</td>
+<td>是否指向第一条之前  </td>
+</tr>
+<tr>
+<td>isAfterLast()</td>
+<td>是否指向最后一条之后  </td>
+</tr>
+<tr>
+<td>isNull(int columnIndex)</td>
+<td>指定列是否为空(列基数为0)  </td>
+</tr>
+<tr>
+<td>isClosed()</td>
+<td>游标是否已关闭  </td>
+</tr>
+<tr>
+<td>getCount()</td>
+<td>总数据项数  </td>
+</tr>
+<tr>
+<td>getPosition()</td>
+<td>返回当前游标所指向的行数  </td>
+</tr>
+<tr>
+<td>getColumnIndex(String columnName)</td>
+<td>返回某列名对应的列索引值  </td>
+</tr>
+<tr>
+<td>getString(int columnIndex)</td>
+<td>返回当前行指定列的值</td>
+</tr>
+</tbody>
+</table>
+<p>遍历结果集的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Cursor cs = db.query(传入相关参数);     //得到结果集</div><div class="line">if(cs!=null)&#123;</div><div class="line">    while(cs.moveToNext())&#123;</div><div class="line">        cs.getString(cs.getColumnIndex(列名));  //通过列名获得列索引，然后再取出其值</div><div class="line">        //...获取更多的列值</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Demo演示"><a href="#Demo演示" class="headerlink" title="Demo演示"></a>Demo演示</h4><p>这篇博客准备很久了，之前只是知道怎么使用Android的SQLite数据库，并没有系统地去熟悉相关的知识，现在通过查看官方的API文档与别人的博客将这些知识整理了一下，自己写了一个小Demo来熟悉Android的SQLite数据库操作。</p>
+<p>核心的代码如下：</p>
+<p>MainActivity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">public void insertData() &#123;  //插入数据</div><div class="line"></div><div class="line">    // 通过直接执行SQL语句来给学生表插入3条数据</div><div class="line">    db.execSQL(&quot;INSERT INTO &quot; + SQLiteUtil.TABLE_NAME_STUDENT</div><div class="line">                + &quot; (Sno,Sname,Sage,Ssex) VALUES (&apos;2016001&apos;,&apos;fzy&apos;,&apos;22&apos;,&apos;男&apos;)&quot;);</div><div class="line">                db.execSQL(&quot;INSERT INTO &quot; + SQLiteUtil.TABLE_NAME_STUDENT</div><div class="line">                + &quot; (Sno,Sname,Sage,Ssex) VALUES (&apos;2016002&apos;,&apos;qwe&apos;,&apos;20&apos;,&apos;女&apos;)&quot;);</div><div class="line">                db.execSQL(&quot;INSERT INTO &quot; + SQLiteUtil.TABLE_NAME_STUDENT</div><div class="line">                + &quot; (Sno,Sname,Sage,Ssex) VALUES (&apos;2016003&apos;,&apos;asd&apos;,&apos;19&apos;,&apos;男&apos;)&quot;);</div><div class="line">    </div><div class="line">    // 使用insert方法来给学生表插入一条记录</div><div class="line">    ContentValues cv = new ContentValues();</div><div class="line">    cv.put(SQLiteUtil.COLUMN_NOTE_NO, &quot;20160004&quot;);</div><div class="line">    cv.put(SQLiteUtil.COLUMN_NOTE_NAME, &quot;rty&quot;);</div><div class="line">    cv.put(SQLiteUtil.COLUMN_NOTE_AGE, &quot;24&quot;);</div><div class="line">    cv.put(SQLiteUtil.COLUMN_NOTE_SEX, &quot;男&quot;);</div><div class="line">    db.insert(SQLiteUtil.TABLE_NAME_STUDENT, null, cv);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void deleteData() &#123;</div><div class="line"></div><div class="line">    // 直接执行SQL语句删除学生表中Sage大于18的学生的所有信息</div><div class="line">    db.execSQL(&quot;DELETE FROM &quot; + SQLiteUtil.TABLE_NAME_STUDENT + &quot; WHERE Sage = 18&quot;);</div><div class="line">    </div><div class="line">    // 使用delete方法来删除学生表中_id大于1的学生的所有信息</div><div class="line">    db.delete(SQLiteUtil.TABLE_NAME_STUDENT, &quot;_id&gt;&quot;, new String[] &#123; &quot;1&quot; &#125;);</div><div class="line">&#125;</div><div class="line">    </div><div class="line">public void updateData() &#123;</div><div class="line"></div><div class="line">    // 直接执行SQL语句表中Sno为20160002的学生的名字Sname更新为xxx</div><div class="line">    db.execSQL(&quot;UPDATE &quot; + SQLiteUtil.TABLE_NAME_STUDENT + &quot; SET Sname = &apos;xxx&apos; WHERE Sno = &apos;2016002&apos;&quot;);</div><div class="line">    </div><div class="line">    // 使用update方法来更新学生表中_id大于2的学生的年龄信息</div><div class="line">    ContentValues cv = new ContentValues();</div><div class="line">    cv.put(SQLiteUtil.COLUMN_NOTE_AGE, &quot;18&quot;);</div><div class="line">    db.update(SQLiteUtil.TABLE_NAME_STUDENT, cv, &quot;_id&gt;?&quot;,</div><div class="line">    new String[] &#123; &quot;2&quot; &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void queryData() &#123;</div><div class="line"></div><div class="line">    Cursor cs = db.query(SQLiteUtil.TABLE_NAME_STUDENT, null, null, null,null, null, null, null);</div><div class="line">    StringBuilder result = new StringBuilder();</div><div class="line">    while (cs.moveToNext()) &#123;   //遍历结果集</div><div class="line">    String line = cs.getString(cs.getColumnIndex(SQLiteUtil.COLUMN_NOTE_NO))</div><div class="line">                    + cs.getString(cs.getColumnIndex(SQLiteUtil.COLUMN_NOTE_NAME))</div><div class="line">                    + cs.getInt(cs.getColumnIndex(SQLiteUtil.COLUMN_NOTE_AGE))</div><div class="line">                    + cs.getString(cs.getColumnIndex(SQLiteUtil.COLUMN_NOTE_SEX)) + &quot;\n&quot;;</div><div class="line">                    result.append(line);    </div><div class="line">    &#125;</div><div class="line">    mResult.setText(result);    //使用TextView显示出来</div><div class="line">    cs.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过在按钮的监听事件中调用这些方法就可以实现我的Demo的功能，这个Demo主要是通过不同的方式来实践数据库的操作，比较简单。效果如下：</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/7/26-1.jpg" alt="26-1"></p>
+<h5 id="数据库管理工具"><a href="#数据库管理工具" class="headerlink" title="数据库管理工具"></a>数据库管理工具</h5><p>将程序运行在模拟器中后，我们可以打开DDMS工具看到我创建的数据库文件：fzy，将其导出到电脑，使用第三方工具查看。这里讲解一种比较方便的方法，直接使用SDK提供的数据库管理工具来操作，不需要每次更改都将数据库文件导出到windows，具体方法如下：</p>
+<p>1、打开Windowsx系统的cmd窗口</p>
+<p>2、进入到你的SDK目录下的platform-tools目录下，输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb shell</div></pre></td></tr></table></figure>
+<p>进入调试环境，然后输入如下命令进入到数据库文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /data/data/包名/databases</div><div class="line">ls  //查看有哪些数据库文件</div></pre></td></tr></table></figure>
+<p>然后，使用如下sqlite工具打开数据库文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sqlite3 数据库文件名</div></pre></td></tr></table></figure>
+<p>进入sqlite3命令行管理工具，可以通过以下命令进行操作，这与mysql数据库有些区别，命令都是以.号开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.help 查看帮助</div><div class="line">.tables 查看数据库中存在的表</div></pre></td></tr></table></figure>
+<p>然后就可以对相应的表执行sql语句啦！需要注意的是，sql语句末尾需要加分号，sqlite命令行工具的操作命令不需要加分号。</p>
+<p>如下图所示：</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/7/26-2.jpg" alt="26-2"></p>
+<p>参考博客： </p>
+<p>[1] <a href="http://blog.csdn.net/liuhe688/article/details/6715983/" target="_blank" rel="external">Android中SQLite应用详解</a><br>[2] <a href="http://blog.csdn.net/codeeer/article/details/30237597" target="_blank" rel="external">Android 操作SQLite基本用法</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/［Android-SQLite］/" rel="tag"># ［Android,SQLite］</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/25/每个认真生活的人，都值得被认真对待/" rel="next" title="每个认真生活的人，都值得被认真对待">
+                <i class="fa fa-chevron-left"></i> 每个认真生活的人，都值得被认真对待
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/29/Android数据存储之文件存储/" rel="prev" title="Android数据存储之文件存储">
+                Android数据存储之文件存储 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.jpg"
+               alt="Line" />
+          <p class="site-author-name" itemprop="name">Line</p>
+          <p class="site-description motion-element" itemprop="description">fzy-line</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库创建与管理"><span class="nav-number">1.</span> <span class="nav-text">数据库创建与管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#必须实现构造方法"><span class="nav-number">1.1.</span> <span class="nav-text">必须实现构造方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重写两个抽象方法"><span class="nav-number">1.2.</span> <span class="nav-text">重写两个抽象方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库基本操作"><span class="nav-number">2.</span> <span class="nav-text">数据库基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作写法一"><span class="nav-number">2.1.</span> <span class="nav-text">基本操作写法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作写法二"><span class="nav-number">2.2.</span> <span class="nav-text">基本操作写法二</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#插入"><span class="nav-number">2.2.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#删除"><span class="nav-number">2.2.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#更新"><span class="nav-number">2.2.3.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查询"><span class="nav-number">2.2.4.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结果集的处理"><span class="nav-number">2.3.</span> <span class="nav-text">结果集的处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Demo演示"><span class="nav-number">3.</span> <span class="nav-text">Demo演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库管理工具"><span class="nav-number">3.1.</span> <span class="nav-text">数据库管理工具</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Line</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
