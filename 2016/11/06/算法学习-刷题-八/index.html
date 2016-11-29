@@ -1,0 +1,705 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法学习,LeetCode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.jpg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="二维数组中查找整数牛客网在线编程：剑指Offer第1题
+题目描述在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法学习-刷题(八)">
+<meta property="og:url" content="https://fzy-line.github.io/2016/11/06/算法学习-刷题-八/index.html">
+<meta property="og:site_name" content="Line's Blog">
+<meta property="og:description" content="二维数组中查找整数牛客网在线编程：剑指Offer第1题
+题目描述在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。">
+<meta property="og:updated_time" content="2016-11-29T12:12:30.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法学习-刷题(八)">
+<meta name="twitter:description" content="二维数组中查找整数牛客网在线编程：剑指Offer第1题
+题目描述在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fzy-line.github.io/2016/11/06/算法学习-刷题-八/"/>
+
+
+
+
+
+  <title> 算法学习-刷题(八) | Line's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Line's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Coding,Enjoy Life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/11/06/算法学习-刷题-八/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Line">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/logo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Line's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Line's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                算法学习-刷题(八)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-06T20:05:39+08:00">
+                2016-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法学习/" itemprop="url" rel="index">
+                    <span itemprop="name">算法学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="二维数组中查找整数"><a href="#二维数组中查找整数" class="headerlink" title="二维数组中查找整数"></a>二维数组中查找整数</h4><p>牛客网在线编程：剑指Offer第1题</p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<a id="more"></a>
+<h5 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public boolean Find(int [][] array,int target) &#123;</div><div class="line">        for(int i = 0;i &lt; array[0].size())</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h5><p>把每一行看成有序递增的数组，利用二分查找，通过遍历每一行得到答案，时间复杂度是nlogn。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public boolean Find(int [][] array,int target) &#123;</div><div class="line">         </div><div class="line">        for(int i=0;i&lt;array.length;i++)&#123;</div><div class="line">            int low=0;</div><div class="line">            int high=array[i].length-1;</div><div class="line">            while(low&lt;=high)&#123;</div><div class="line">                int mid=(low+high)/2;</div><div class="line">                if(target&gt;array[i][mid])</div><div class="line">                    low=mid+1;</div><div class="line">                else if(target&lt;array[i][mid])</div><div class="line">                    high=mid-1;</div><div class="line">                else</div><div class="line">                    return true;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h5><p>利用二维数组由上到下，由左到右递增的规律，<br>那么选取右上角或者左下角的元素a[row][col]与target进行比较，<br>当target小于元素a[row][col]时，那么target必定在元素a所在行的左边,<br>即col–；<br>当target大于元素a[row][col]时，那么target必定在元素a所在列的下边,<br>即row++；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public boolean Find(int [][] array,int target) &#123;</div><div class="line">        int row=0;</div><div class="line">        int col=array[0].length-1;</div><div class="line">        while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123;</div><div class="line">            if(target==array[row][col])</div><div class="line">                return true;</div><div class="line">            else if(target&gt;array[row][col])</div><div class="line">                row++;</div><div class="line">            else</div><div class="line">                col--;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、myPow"><a href="#2、myPow" class="headerlink" title="2、myPow**"></a>2、myPow**</h4><p>LeetCode第2题</p>
+<h5 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h5><p>Implement pow(x, n).</p>
+<p>Subscribe to see which companies asked this question</p>
+<h5 id="解法一-1"><a href="#解法一-1" class="headerlink" title="解法一"></a>解法一</h5><p>用递归方法求n个x的乘积，注意考虑n的正负号，时间复杂度为O(n)。</p>
+<p>Leetcode提交超时的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">double myPow(double x, int n) &#123;</div><div class="line">    if(n==0)  </div><div class="line">        return 1.0;</div><div class="line">    if(n&lt;0)  </div><div class="line">        return 1.0/myPow(x,-n);  </div><div class="line">    return x*myPow(x,n-1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="解法二-1"><a href="#解法二-1" class="headerlink" title="解法二"></a>解法二</h5><p>考虑到n个x相乘式子的对称关系，可采用如下方法：</p>
+<p><strong>Leetcode AC的代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">double myPow(double x, int n) &#123;</div><div class="line">    if(n==0)  </div><div class="line">        return 1.0;</div><div class="line">    if(n % 2 == 0) &#123;</div><div class="line">        return myPow(x * x, n / 2);</div><div class="line">    &#125; else &#123;</div><div class="line">        return (n &gt; 0 ? x : 1.0 / x ) * myPow(x * x, n / 2) ;</div><div class="line">    &#125;  </div><div class="line">       </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>3、Reverse Integer</strong></p>
+<p>LeetCode第7题</p>
+<p><strong>题目描述：</strong></p>
+<p>Reverse digits of an integer.</p>
+<p>Example1: x = 123, return 321<br>Example2: x = -123, return -321</p>
+<h5 id="一般的思路"><a href="#一般的思路" class="headerlink" title="一般的思路"></a>一般的思路</h5><p>反转整数，只要从低位开始依次取得整数的各个位，然后再按顺序整合成整数即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int reverse(int x) &#123;</div><div class="line">    int num = 0;</div><div class="line">    while(x)&#123;</div><div class="line">        num = num*10 + x%10;</div><div class="line">        x = x/10;</div><div class="line">    &#125;</div><div class="line">    return num;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是，此题特别要考虑结果溢出的问题！</p>
+<h5 id="LeetcodeAC的代码"><a href="#LeetcodeAC的代码" class="headerlink" title="LeetcodeAC的代码"></a>LeetcodeAC的代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">int reverse(int x) &#123;</div><div class="line">    int num = 0,tmp;</div><div class="line">    while(x)&#123;</div><div class="line">        tmp = num;</div><div class="line">        num = num*10 + x%10;</div><div class="line">        if((num-x%10)/10 != tmp)    //判断是否溢出</div><div class="line">            return 0;</div><div class="line">        x = x/10;</div><div class="line">    &#125;</div><div class="line">    return num;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="计算字符个数"><a href="#计算字符个数" class="headerlink" title="计算字符个数"></a>计算字符个数</h4><p>牛客网华为机试在线训练第2题</p>
+<h5 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h5><p>写出一个程序，接受一个有字母和数字以及空格组成的字符串，和一个字符，然后输出输入字符串中含有该字符的个数。不区分大小写。</p>
+<p>输入一个有字母和数字以及空格组成的字符串，和一个字符。</p>
+<p>输出输入字符串中含有该字符的个数。</p>
+<p>输入例子:<br>ABCDEF<br>A</p>
+<p>输出例子:<br>1</p>
+<p>此题十分简单，遍历字符串，将目标字符与字符串的每个字符进行比较，相等则计数加1，当然，要注意的是题目中给出的不区分大小写以及获取输入的方法。</p>
+<h5 id="牛客网AC的代码"><a href="#牛客网AC的代码" class="headerlink" title="牛客网AC的代码"></a>牛客网AC的代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;string.h&gt;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">    int i,len=0,cnt=0;</div><div class="line">    char str[1000],c;</div><div class="line">    gets(str);</div><div class="line">    scanf(&quot;%c&quot;,&amp;c);</div><div class="line">    if(c&gt;=65&amp;&amp;c&lt;=90)    //目标字符如果是字母则转换成小写</div><div class="line">       c+=32;</div><div class="line">    len = strlen(str);</div><div class="line">    for(i=0;i&lt;len;i++)&#123;</div><div class="line">        if(str[i]&gt;=65&amp;&amp;str[i]&lt;=90)  //字符串中的字符如果是字母则统一转换成小写</div><div class="line">            str[i]+=32;</div><div class="line">        if(str[i]==c)&#123;  //进行比较</div><div class="line">            cnt++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    printf(&quot;%d&quot;,cnt);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法学习/" rel="tag"># 算法学习</a>
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/23/第三届电子协会成立大会发言/" rel="next" title="第三届电子协会成立大会发言">
+                <i class="fa fa-chevron-left"></i> 第三届电子协会成立大会发言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/Python文件操作/" rel="prev" title="Python文件操作">
+                Python文件操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.jpg"
+               alt="Line" />
+          <p class="site-author-name" itemprop="name">Line</p>
+          <p class="site-description motion-element" itemprop="description">fzy-line</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组中查找整数"><span class="nav-number">1.</span> <span class="nav-text">二维数组中查找整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解法一"><span class="nav-number">2.1.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法二"><span class="nav-number">2.2.</span> <span class="nav-text">解法二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法三"><span class="nav-number">2.3.</span> <span class="nav-text">解法三</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、myPow"><span class="nav-number">3.</span> <span class="nav-text">2、myPow**</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-1"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法一-1"><span class="nav-number">3.2.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法二-1"><span class="nav-number">3.3.</span> <span class="nav-text">解法二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一般的思路"><span class="nav-number">3.4.</span> <span class="nav-text">一般的思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetcodeAC的代码"><span class="nav-number">3.5.</span> <span class="nav-text">LeetcodeAC的代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算字符个数"><span class="nav-number">4.</span> <span class="nav-text">计算字符个数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-2"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#牛客网AC的代码"><span class="nav-number">4.2.</span> <span class="nav-text">牛客网AC的代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Line</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
