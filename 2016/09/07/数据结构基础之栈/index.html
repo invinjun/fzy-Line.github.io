@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/7-1.jpg">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/7-2.jpg">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/7-3.jpg">
-<meta property="og:updated_time" content="2016-11-29T08:46:44.646Z">
+<meta property="og:updated_time" content="2016-11-29T09:52:53.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构基础之栈">
 <meta name="twitter:description" content="继续上一篇博客的话题，继续总结数据结构的相关知识，此篇博客主要总结栈的基本概念、存储结构、基本操作以及应用，栈是一种操作受限的线性表，只允许在表的一端进行插入和删除，也正因为它的这个特点，使得栈的应用十分广泛，比如数制转换、表达式求值等问题的解决都用到栈以及栈在递归中的重要作用。">
@@ -360,7 +360,7 @@
 <p>特点：后进先出（Last In First Out，LIFO）。</p>
 <h4 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h4><p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/9/7-1.jpg" alt="7-1"></p>
 <p>对栈顶指针进行初始化时，可以将其初始化为-1，也可以初始化为0，当初始化为-1时栈顶指针指向的元素即为栈顶元素，而初始化为0时，栈顶指针减1所指向的元素才是栈顶元素，具体区别如下：</p>
-<h5 id="1、初始化栈顶指针S-gt-top-1时"><a href="#1、初始化栈顶指针S-gt-top-1时" class="headerlink" title="1、初始化栈顶指针S-&gt;top = -1时"></a>1、初始化栈顶指针S-&gt;top = -1时</h5><p>栈顶元素为S-&gt;data[S-&gt;top]</p>
+<h5 id="初始化栈顶指针S-gt-top-1时"><a href="#初始化栈顶指针S-gt-top-1时" class="headerlink" title="初始化栈顶指针S-&gt;top = -1时"></a>初始化栈顶指针S-&gt;top = -1时</h5><p>栈顶元素为S-&gt;data[S-&gt;top]</p>
 <p>进栈操作：先将栈顶指针加1，再送值到栈顶元素，即S-&gt;data[++S-&gt;top] = x</p>
 <p>出栈操作：先取栈顶元素值，再将栈顶指针减1，即x = S-&gt;data[S-&gt;top–]</p>
 <p>栈空条件：S-&gt;top = -1</p>
@@ -513,7 +513,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -565,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈的基本概念"><span class="nav-number">1.</span> <span class="nav-text">栈的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序栈"><span class="nav-number">2.</span> <span class="nav-text">顺序栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、初始化栈顶指针S-gt-top-1时"><span class="nav-number">2.1.</span> <span class="nav-text">1、初始化栈顶指针S->top = -1时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化栈顶指针S-gt-top-0时"><span class="nav-number">2.2.</span> <span class="nav-text">初始化栈顶指针S->top = 0时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现"><span class="nav-number">2.3.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链栈"><span class="nav-number">3.</span> <span class="nav-text">链栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">3.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现-1"><span class="nav-number">3.2.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享栈"><span class="nav-number">4.</span> <span class="nav-text">共享栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点-1"><span class="nav-number">4.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现-2"><span class="nav-number">4.2.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈的应用"><span class="nav-number">5.</span> <span class="nav-text">栈的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数制转换"><span class="nav-number">5.1.</span> <span class="nav-text">数制转换</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈的基本概念"><span class="nav-number">1.</span> <span class="nav-text">栈的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序栈"><span class="nav-number">2.</span> <span class="nav-text">顺序栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化栈顶指针S-gt-top-1时"><span class="nav-number">2.1.</span> <span class="nav-text">初始化栈顶指针S->top = -1时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化栈顶指针S-gt-top-0时"><span class="nav-number">2.2.</span> <span class="nav-text">初始化栈顶指针S->top = 0时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现"><span class="nav-number">2.3.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链栈"><span class="nav-number">3.</span> <span class="nav-text">链栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">3.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现-1"><span class="nav-number">3.2.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享栈"><span class="nav-number">4.</span> <span class="nav-text">共享栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点-1"><span class="nav-number">4.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基本操作实现-2"><span class="nav-number">4.2.</span> <span class="nav-text">基本操作实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈的应用"><span class="nav-number">5.</span> <span class="nav-text">栈的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数制转换"><span class="nav-number">5.1.</span> <span class="nav-text">数制转换</span></a></li></ol></li></ol></div>
             
 
           </div>
