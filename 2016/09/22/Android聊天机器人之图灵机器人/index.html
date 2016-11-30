@@ -1,0 +1,684 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="［Android,图灵机器人］," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.jpg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="图灵机器人—-中文语境下智能度最高的机器人大脑。之前写了一个有意思的小Demo，其实也比较简单，只是使用了图灵机器人的SDK来做了一个简单的聊天机器人，不过图灵机器人确实比较智能，而且功能十分丰富，它不仅提供了数据访问接口，还集成了SDK供大家使用，所以很方便很实用。如果无聊了，就自己动手来做一个聊天机器人解解闷吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android聊天机器人之图灵机器人">
+<meta property="og:url" content="https://fzy-line.github.io/2016/09/22/Android聊天机器人之图灵机器人/index.html">
+<meta property="og:site_name" content="Line's Blog">
+<meta property="og:description" content="图灵机器人—-中文语境下智能度最高的机器人大脑。之前写了一个有意思的小Demo，其实也比较简单，只是使用了图灵机器人的SDK来做了一个简单的聊天机器人，不过图灵机器人确实比较智能，而且功能十分丰富，它不仅提供了数据访问接口，还集成了SDK供大家使用，所以很方便很实用。如果无聊了，就自己动手来做一个聊天机器人解解闷吧！">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/22-1.png">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/22-2.png">
+<meta property="og:updated_time" content="2016-11-30T02:09:00.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android聊天机器人之图灵机器人">
+<meta name="twitter:description" content="图灵机器人—-中文语境下智能度最高的机器人大脑。之前写了一个有意思的小Demo，其实也比较简单，只是使用了图灵机器人的SDK来做了一个简单的聊天机器人，不过图灵机器人确实比较智能，而且功能十分丰富，它不仅提供了数据访问接口，还集成了SDK供大家使用，所以很方便很实用。如果无聊了，就自己动手来做一个聊天机器人解解闷吧！">
+<meta name="twitter:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/9/22-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fzy-line.github.io/2016/09/22/Android聊天机器人之图灵机器人/"/>
+
+
+
+
+
+  <title> Android聊天机器人之图灵机器人 | Line's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Line's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Love Coding,Enjoy Life</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/09/22/Android聊天机器人之图灵机器人/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Line">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/logo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Line's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Line's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android聊天机器人之图灵机器人
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-22T10:07:29+08:00">
+                2016-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　图灵机器人—-中文语境下智能度最高的机器人大脑。之前写了一个有意思的小Demo，其实也比较简单，只是使用了图灵机器人的SDK来做了一个简单的聊天机器人，不过图灵机器人确实比较智能，而且功能十分丰富，它不仅提供了数据访问接口，还集成了SDK供大家使用，所以很方便很实用。如果无聊了，就自己动手来做一个聊天机器人解解闷吧！</p>
+<a id="more"></a>
+<h5 id="下载Android版本SDK"><a href="#下载Android版本SDK" class="headerlink" title="下载Android版本SDK"></a>下载Android版本SDK</h5><p>图灵机器人官网：<a href="http://www.tuling123.com/" target="_blank" rel="external">http://www.tuling123.com/</a></p>
+<p>注册之后创建机器人，就可以得到APIKEY和密钥，然后下载SDK，如下图：</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/9/22-1.png" alt="22-1"></p>
+<h5 id="将SDK添加到工程中"><a href="#将SDK添加到工程中" class="headerlink" title="将SDK添加到工程中"></a>将SDK添加到工程中</h5><p>将SDK压缩包中的libs文件夹复制到工程目录替换掉原来的libs。</p>
+<h5 id="添加权限"><a href="#添加权限" class="headerlink" title="添加权限"></a>添加权限</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;</div></pre></td></tr></table></figure>
+<h5 id="SDK初始化"><a href="#SDK初始化" class="headerlink" title="SDK初始化"></a>SDK初始化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">SDKInitBuilder builder = new SDKInitBuilder(this)</div><div class="line">                .setSecret(TURING_SECRET).setTuringKey(TURING_APIKEY)</div><div class="line">                .setUniqueId(UNIQUEID);</div><div class="line">SDKInit.init(builder, new InitListener() &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onFail(String arg0) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void onComplete() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        mTuringApiManager = new TuringApiManager(MainActivity.this);</div><div class="line">        mTuringApiManager.setHttpListener(myHttpConnectionListener);</div><div class="line">        // ttsManager.startTTS(&quot;你好啊&quot;);              </div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h5 id="聊天机器人Demo"><a href="#聊天机器人Demo" class="headerlink" title="聊天机器人Demo"></a>聊天机器人Demo</h5><p>实现的效果如下：</p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2016/9/22-2.png" alt="22-2"></p>
+<p>实现步骤：</p>
+<h5 id="定义消息实体类"><a href="#定义消息实体类" class="headerlink" title="定义消息实体类"></a>定义消息实体类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">public class ChatMessage &#123;</div><div class="line">    private String name;    //消息的名字</div><div class="line">    private String msg;     //消息的内容</div><div class="line">    private Type type;      //消息的类型</div><div class="line">    private Date date;      //消息的时间</div><div class="line">    </div><div class="line">    //消息类型：发送、接收</div><div class="line">    public enum Type &#123;</div><div class="line">        INCOMING, OUTCOMING</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public ChatMessage() &#123;</div><div class="line">        // TODO Auto-generated constructor stub</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public ChatMessage(String msg,Type type,Date date) &#123;</div><div class="line">        // TODO Auto-generated constructor stub</div><div class="line">        setMsg(msg);</div><div class="line">        setType(type);</div><div class="line">        setDate(date);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //生成各成员属性的set和get方法</div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public String getMsg() &#123;</div><div class="line">        return msg;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setMsg(String msg) &#123;</div><div class="line">        this.msg = msg;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public Type getType() &#123;</div><div class="line">        return type;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setType(Type type) &#123;</div><div class="line">        this.type = type;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public Date getDate() &#123;</div><div class="line">        return date;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public void setDate(Date date) &#123;</div><div class="line">        this.date = date;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="编写适配器类"><a href="#编写适配器类" class="headerlink" title="编写适配器类"></a>编写适配器类</h5><p>使用适配器将数据与视图绑定起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">public class ChatMessageAdapter extends BaseAdapter &#123;</div><div class="line"></div><div class="line">    private List&lt;ChatMessage&gt; mDatas;</div><div class="line">    private Context mContext;</div><div class="line">    </div><div class="line">    //使用ViewHolder临时存储view，提高效率</div><div class="line">    private final class ViewHolder &#123;</div><div class="line">        TextView mDate;</div><div class="line">        TextView mMsg;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    public ChatMessageAdapter(Context context, List&lt;ChatMessage&gt; data) &#123;</div><div class="line">        // TODO Auto-generated constructor stub</div><div class="line">        mDatas = data;</div><div class="line">        mContext = context;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public int getCount() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        return mDatas.size();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public Object getItem(int position) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        return mDatas.get(position);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public long getItemId(int position) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        return position;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //得到布局的类型</div><div class="line">    @Override</div><div class="line">    public int getItemViewType(int position) &#123;</div><div class="line">        ChatMessage chatMessage = mDatas.get(position);</div><div class="line">        if (chatMessage.getType() == Type.INCOMING) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        return 1;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public int getViewTypeCount() &#123;</div><div class="line">        return 2;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        ViewHolder viewHolder = null;</div><div class="line">        if (convertView == null) &#123;</div><div class="line">            //更具不同的布局，加载不同的控件</div><div class="line">            if (getItemViewType(position) == 0) &#123;</div><div class="line">                convertView = LayoutInflater.from(mContext).inflate(</div><div class="line">                        R.layout.item_from_msg, null);</div><div class="line">                viewHolder = new ViewHolder();</div><div class="line">                viewHolder.mDate = (TextView) convertView</div><div class="line">                        .findViewById(R.id.id_form_msg_date);</div><div class="line">                viewHolder.mMsg = (TextView) convertView</div><div class="line">                        .findViewById(R.id.id_from_msg_info);</div><div class="line">            &#125; else &#123;</div><div class="line">                convertView = LayoutInflater.from(mContext).inflate(</div><div class="line">                        R.layout.item_to_msg, null);</div><div class="line">                viewHolder = new ViewHolder();</div><div class="line">                viewHolder.mDate = (TextView) convertView</div><div class="line">                        .findViewById(R.id.id_to_msg_date);</div><div class="line">                viewHolder.mMsg = (TextView) convertView</div><div class="line">                        .findViewById(R.id.id_to_msg_info);</div><div class="line">            &#125;</div><div class="line">            convertView.setTag(viewHolder);     //使用setTag把view缓存起来</div><div class="line">        &#125; else &#123;</div><div class="line">            viewHolder = (ViewHolder) convertView.getTag();     //使用getTag得到view</div><div class="line">        &#125;</div><div class="line">        ChatMessage chatMessage = mDatas.get(position);</div><div class="line">        // 设置数据</div><div class="line">        SimpleDateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</div><div class="line">        viewHolder.mDate.setText(df.format(chatMessage.getDate()));</div><div class="line">        viewHolder.mMsg.setText(chatMessage.getMsg());</div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="实现业务逻辑"><a href="#实现业务逻辑" class="headerlink" title="实现业务逻辑"></a>实现业务逻辑</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends Activity &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 申请的turing的apikey</div><div class="line">     * **/</div><div class="line">    private final String TURING_APIKEY = &quot;56433fe6f67942ff80c4d7bd2d20fe34&quot;;</div><div class="line">    /**</div><div class="line">     * 申请的secret</div><div class="line">     * **/</div><div class="line">    private final String TURING_SECRET = &quot;d9989eac6e4cab39&quot;;</div><div class="line">    private final String UNIQUEID = &quot;131313131&quot;;</div><div class="line">    private TuringApiManager mTuringApiManager;</div><div class="line">    private ListView mMsgs;</div><div class="line">    private ChatMessageAdapter mAdapter;</div><div class="line">    private List&lt;ChatMessage&gt; mDatas;</div><div class="line">    </div><div class="line">    private EditText mInputMsg;</div><div class="line">    private Button mSendMsg;</div><div class="line"></div><div class="line">    //设置监听</div><div class="line">    HttpConnectionListener myHttpConnectionListener = new HttpConnectionListener() &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onSuccess(RequestResult result) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        if (result != null) &#123;</div><div class="line">            String res = result.getContent().toString();    //获取服务器返回数据</div><div class="line">            System.out.println(res);</div><div class="line">            JSONObject jo;</div><div class="line">            try &#123;</div><div class="line">                jo = new JSONObject(res);   //解析JSON格式数据</div><div class="line">                String text = jo.getString(&quot;text&quot;);</div><div class="line">                mDatas.add(new ChatMessage(text, Type.INCOMING, new Date())); </div><div class="line">                mAdapter.notifyDataSetChanged();    //更新UI</div><div class="line">                mMsgs.setSelection(mDatas.size()-1);</div><div class="line">            &#125; catch (JSONException e) &#123;</div><div class="line">                // TODO Auto-generated catch block</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;   </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void onError(ErrorMessage arg0) &#123;</div><div class="line">    // TODO Auto-generated method stub</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        </div><div class="line">        //SDK初始化</div><div class="line">        SDKInitBuilder builder = new SDKInitBuilder(this)</div><div class="line">                    .setSecret(TURING_SECRET).setTuringKey(TURING_APIKEY)</div><div class="line">                    .setUniqueId(UNIQUEID);</div><div class="line">        </div><div class="line">        SDKInit.init(builder, new InitListener() &#123;</div><div class="line">        </div><div class="line">            @Override</div><div class="line">            public void onFail(String arg0) &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">            </div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            @Override</div><div class="line">            public void onComplete() &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">                mTuringApiManager = new TuringApiManager(MainActivity.this);</div><div class="line">                mTuringApiManager.setHttpListener(myHttpConnectionListener);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        initView();     //初始化视图</div><div class="line">        initDatas();    //初始化数据</div><div class="line">        </div><div class="line">        //发送消息按钮的监听事件</div><div class="line">        mSendMsg.setOnClickListener(new OnClickListener()</div><div class="line">        &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v)</div><div class="line">            &#123;</div><div class="line">                final String toMsg = mInputMsg.getText().toString();</div><div class="line">                if (TextUtils.isEmpty(toMsg))</div><div class="line">                &#123;</div><div class="line">                    Toast.makeText(MainActivity.this,&quot;发送消息不能为空！&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">            </div><div class="line">                //得到输入框的内容，转化成一个消息对象</div><div class="line">                ChatMessage toMessage = new ChatMessage(toMsg,Type.OUTCOMING,new Date());</div><div class="line">                mDatas.add(toMessage);</div><div class="line">                mAdapter.notifyDataSetChanged();</div><div class="line">                mMsgs.setSelection(mDatas.size()-1);</div><div class="line">                </div><div class="line">                //清空输入框</div><div class="line">                mInputMsg.setText(&quot;&quot;);</div><div class="line">                </div><div class="line">                //发送消息到图灵服务器</div><div class="line">                mTuringApiManager.requestTuringAPI(toMsg);</div><div class="line">            </div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //初始化数据</div><div class="line">    private void initDatas()</div><div class="line">    &#123;</div><div class="line">        mDatas = new ArrayList&lt;ChatMessage&gt;();</div><div class="line">        mDatas.add(new ChatMessage(&quot;你好，小农为您服务&quot;, Type.INCOMING, new Date()));</div><div class="line">        mAdapter = new ChatMessageAdapter(this, mDatas);</div><div class="line">        mMsgs.setAdapter(mAdapter);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //初始化视图</div><div class="line">    private void initView()</div><div class="line">    &#123;</div><div class="line">        mMsgs = (ListView) findViewById(R.id.id_listview_msgs);</div><div class="line">        mInputMsg = (EditText) findViewById(R.id.id_input_msg);</div><div class="line">        mSendMsg = (Button) findViewById(R.id.id_send_msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/［Android-图灵机器人］/" rel="tag"># ［Android,图灵机器人］</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/08/数据结构基础之队列/" rel="next" title="数据结构基础之队列">
+                <i class="fa fa-chevron-left"></i> 数据结构基础之队列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/03/Android逆向分析之反编译/" rel="prev" title="Android逆向分析之反编译">
+                Android逆向分析之反编译 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.jpg"
+               alt="Line" />
+          <p class="site-author-name" itemprop="name">Line</p>
+          <p class="site-description motion-element" itemprop="description">fzy-line</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载Android版本SDK"><span class="nav-number">1.</span> <span class="nav-text">下载Android版本SDK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#将SDK添加到工程中"><span class="nav-number">2.</span> <span class="nav-text">将SDK添加到工程中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加权限"><span class="nav-number">3.</span> <span class="nav-text">添加权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SDK初始化"><span class="nav-number">4.</span> <span class="nav-text">SDK初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#聊天机器人Demo"><span class="nav-number">5.</span> <span class="nav-text">聊天机器人Demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义消息实体类"><span class="nav-number">6.</span> <span class="nav-text">定义消息实体类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写适配器类"><span class="nav-number">7.</span> <span class="nav-text">编写适配器类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现业务逻辑"><span class="nav-number">8.</span> <span class="nav-text">实现业务逻辑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Line</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
