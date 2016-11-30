@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="查看无线网卡状态">
+<meta name="description" content="查看无线网卡状态把无线网卡插到树莓派上，输入命令ifconfig 查看是否有wlan0的信息，如果有说明网卡状态正常，可以直接进行第二步，直接配置无线网络。如果看不到wlan0的信息，则需要根据无线网卡型号安装驱动。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派配置无线网卡">
 <meta property="og:url" content="https://fzy-line.github.io/2016/05/22/树莓派配置无线网卡/index.html">
 <meta property="og:site_name" content="Line's Blog">
-<meta property="og:description" content="查看无线网卡状态">
-<meta property="og:updated_time" content="2016-11-30T02:42:22.937Z">
+<meta property="og:description" content="查看无线网卡状态把无线网卡插到树莓派上，输入命令ifconfig 查看是否有wlan0的信息，如果有说明网卡状态正常，可以直接进行第二步，直接配置无线网络。如果看不到wlan0的信息，则需要根据无线网卡型号安装驱动。">
+<meta property="og:updated_time" content="2016-11-30T03:58:44.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派配置无线网卡">
-<meta name="twitter:description" content="查看无线网卡状态">
+<meta name="twitter:description" content="查看无线网卡状态把无线网卡插到树莓派上，输入命令ifconfig 查看是否有wlan0的信息，如果有说明网卡状态正常，可以直接进行第二步，直接配置无线网络。如果看不到wlan0的信息，则需要根据无线网卡型号安装驱动。">
 
 
 
@@ -349,8 +349,8 @@
       
 
       
-        <h4 id="查看无线网卡状态"><a href="#查看无线网卡状态" class="headerlink" title="查看无线网卡状态"></a>查看无线网卡状态</h4><a id="more"></a>
-<p>把无线网卡插到树莓派上，输入命令ifconfig 查看是否有wlan0的信息，如果有说明网卡状态正常，可以直接进行第二步，直接配置无线网络。如果看不到wlan0的信息，则需要根据无线网卡型号安装驱动。</p>
+        <h4 id="查看无线网卡状态"><a href="#查看无线网卡状态" class="headerlink" title="查看无线网卡状态"></a>查看无线网卡状态</h4><p>把无线网卡插到树莓派上，输入命令ifconfig 查看是否有wlan0的信息，如果有说明网卡状态正常，可以直接进行第二步，直接配置无线网络。如果看不到wlan0的信息，则需要根据无线网卡型号安装驱动。</p>
+<a id="more"></a>
 <h4 id="修改interfaces文件"><a href="#修改interfaces文件" class="headerlink" title="修改interfaces文件"></a>修改interfaces文件</h4><p>（1）用编辑器nano打开interfaces文件<br>输入命令：sudo nano /etc/network/interfaces</p>
 <p>（2）把该文件内容修改成如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">auto lo       </div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp    #采用dhcp方式获取IP</div><div class="line"></div><div class="line">auto wlan0      #如果有wlan，无线网卡，则默认启动无线网卡连接</div><div class="line">allow-hotplug wlan0        #表示wlan设备可以热插拨</div><div class="line">iface wlan0 inet dhcp      #无线网卡连接也采用DHCP方式获取IP地址</div><div class="line">wpa-ssid &quot;你的wifi名字&quot;     #ssid名</div><div class="line">wpa-psk &quot;wifi密码&quot;         #wifi使用wpa-psk认证方式，认证密码</div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure>
