@@ -92,7 +92,7 @@
 <meta property="og:description" content="使用Spinner控件实现省市区三级联动在很多地方都需要用到，比如用户个人信息填写、快递地址填写等场景，这是一个比较基本的功能，但是实现起来却有点麻烦，因为要加载很多的资源数组。掌握基本的省市区三级联动很有必要，当然，再加上一些酷炫的UI设计就能更nice。">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/1-1.jpg">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2016/7/1-2.jpg">
-<meta property="og:updated_time" content="2016-11-29T14:31:54.948Z">
+<meta property="og:updated_time" content="2016-11-30T02:27:38.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Spinner控件之省市区（县）三级联动">
 <meta name="twitter:description" content="使用Spinner控件实现省市区三级联动在很多地方都需要用到，比如用户个人信息填写、快递地址填写等场景，这是一个比较基本的功能，但是实现起来却有点麻烦，因为要加载很多的资源数组。掌握基本的省市区三级联动很有必要，当然，再加上一些酷炫的UI设计就能更nice。">
@@ -352,7 +352,7 @@
       
 
       
-        <p>使用Spinner控件实现省市区三级联动在很多地方都需要用到，比如用户个人信息填写、快递地址填写等场景，这是一个比较基本的功能，但是实现起来却有点麻烦，因为要加载很多的资源数组。掌握基本的省市区三级联动很有必要，当然，再加上一些酷炫的UI设计就能更nice。</p>
+        <p>　　使用Spinner控件实现省市区三级联动在很多地方都需要用到，比如用户个人信息填写、快递地址填写等场景，这是一个比较基本的功能，但是实现起来却有点麻烦，因为要加载很多的资源数组。掌握基本的省市区三级联动很有必要，当然，再加上一些酷炫的UI设计就能更nice。</p>
 <a id="more"></a>
 <h4 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h4><p>添加三个Spinner控件，分别用于省、市、区（县）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    android:orientation=&quot;horizontal&quot; &gt;</div><div class="line"></div><div class="line">    &lt;Spinner</div><div class="line">        android:id=&quot;@+id/spinner_province&quot;</div><div class="line">        android:layout_width=&quot;0dp&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:layout_marginTop=&quot;10dp&quot;</div><div class="line">        android:layout_weight=&quot;1.2&quot; &gt;</div><div class="line">    &lt;/Spinner&gt;</div><div class="line"></div><div class="line">    &lt;Spinner</div><div class="line">        android:id=&quot;@+id/spinner_city&quot;</div><div class="line">        android:layout_width=&quot;0dp&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:layout_marginLeft=&quot;4dp&quot;</div><div class="line">        android:layout_marginTop=&quot;10dp&quot;</div><div class="line">        android:layout_weight=&quot;1.2&quot; &gt;</div><div class="line">    &lt;/Spinner&gt;</div><div class="line"></div><div class="line">    &lt;Spinner</div><div class="line">        android:id=&quot;@+id/spinner_county&quot;</div><div class="line">        android:layout_width=&quot;0dp&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:layout_marginLeft=&quot;4dp&quot;</div><div class="line">        android:layout_marginTop=&quot;10dp&quot;</div><div class="line">        android:layout_weight=&quot;1.8&quot; &gt;</div><div class="line">    &lt;/Spinner&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
@@ -473,7 +473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -481,7 +481,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -490,7 +490,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

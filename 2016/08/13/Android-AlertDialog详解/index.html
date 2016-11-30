@@ -91,13 +91,13 @@
 <meta property="og:site_name" content="Line's Blog">
 <meta property="og:description" content="AlertDialog就是Android中的弹出式对话框，很多应用中都有对AlertDialog的应用。前段时间，一位学长问我自定义AlertDialog的问题，因为自己也只是之前用过，并不是很熟悉，所以我也只能很抱歉地回绝了，这一次通过写这篇博客对AlertDialog的操作进行了详细的总结，介绍了AlertDialog类和AlertDialog.Builder类，以及给AlertDialo">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-1.png">
-<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-2.png">
+<meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-7.png">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-6.png">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-5.png">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-4.png">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-3.png">
 <meta property="og:image" content="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-2.png">
-<meta property="og:updated_time" content="2016-11-30T01:27:39.251Z">
+<meta property="og:updated_time" content="2016-11-30T02:23:08.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android AlertDialog详解">
 <meta name="twitter:description" content="AlertDialog就是Android中的弹出式对话框，很多应用中都有对AlertDialog的应用。前段时间，一位学长问我自定义AlertDialog的问题，因为自己也只是之前用过，并不是很熟悉，所以我也只能很抱歉地回绝了，这一次通过写这篇博客对AlertDialog的操作进行了详细的总结，介绍了AlertDialog类和AlertDialog.Builder类，以及给AlertDialo">
@@ -396,7 +396,7 @@
 </tbody>
 </table>
 <h5 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">AlertDialog dialog = new AlertDialog.Builder(this).create();</div><div class="line">dialog.setTitle(&quot;退出&quot;);</div><div class="line">dialog.setMessage(&quot;是否要退出&quot;);</div><div class="line">dialog.setButton(DialogInterface.BUTTON_NEGATIVE, &quot;取消&quot;,new OnClickListener() &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onClick(DialogInterface arg0, int arg1) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Toast.makeText(MainActivity.this, &quot;取消&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dialog.setButton(DialogInterface.BUTTON_POSITIVE, &quot;确定&quot;,new OnClickListener() &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onClick(DialogInterface arg0, int arg1) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Toast.makeText(MainActivity.this, &quot;确定&quot;,Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dialog.show();</div></pre></td></tr></table></figure>
-<p><img src="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-2.png" alt="13-2"></p>
+<p><img src="http://ohe7ixo05.bkt.clouddn.com/2018/8/13-7.png" alt="13-7"></p>
 <h4 id="AlertDialog-Builder类"><a href="#AlertDialog-Builder类" class="headerlink" title="AlertDialog.Builder类"></a>AlertDialog.Builder类</h4><p>AlertDialog类提供了弹出框的一些基本的方法，但是要想设置更多的元素来丰富我们的弹出框就要使用到AlertDialog.Builder类了。</p>
 <h5 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h5><table>
 <thead>
@@ -574,7 +574,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -582,7 +582,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -591,7 +591,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
