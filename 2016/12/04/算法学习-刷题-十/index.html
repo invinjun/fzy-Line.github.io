@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,文件," />
+  <meta name="keywords" content="Python,算法学习,华为机试," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="上一篇博文中我们介绍了Python使用Mysql数据库进行数据存储，数据库存储的数据需要特定的工具进行打开，而普通的数据文件是一般的电脑都能打开进行查看的，因此数据库存储的通用性没有文件存储那么好，文件存储也是Python网络爬虫的常用存储方式之一，特别是csv文件，所以我们对于文件的输入输出流操作、缓存、基本的读写方式、文件迭代器等我们都需要有一些基本的了解，并熟练掌握文件的读写操作，为我们">
+<meta name="description" content="继续使用Python进行算法练习解题，此篇博客的5道题依然来自于牛客网（专业IT笔试面试备考平台）在线编程之：华为机试在线训练(6-10题)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python文件操作">
-<meta property="og:url" content="https://fzy-line.github.io/2016/08/03/Python文件操作/index.html">
+<meta property="og:title" content="算法学习-刷题(十)">
+<meta property="og:url" content="https://fzy-line.github.io/2016/12/04/算法学习-刷题-十/index.html">
 <meta property="og:site_name" content="Line's Blog">
-<meta property="og:description" content="上一篇博文中我们介绍了Python使用Mysql数据库进行数据存储，数据库存储的数据需要特定的工具进行打开，而普通的数据文件是一般的电脑都能打开进行查看的，因此数据库存储的通用性没有文件存储那么好，文件存储也是Python网络爬虫的常用存储方式之一，特别是csv文件，所以我们对于文件的输入输出流操作、缓存、基本的读写方式、文件迭代器等我们都需要有一些基本的了解，并熟练掌握文件的读写操作，为我们">
-<meta property="og:updated_time" content="2016-11-29T12:37:47.838Z">
+<meta property="og:description" content="继续使用Python进行算法练习解题，此篇博客的5道题依然来自于牛客网（专业IT笔试面试备考平台）在线编程之：华为机试在线训练(6-10题)。">
+<meta property="og:updated_time" content="2016-12-04T14:38:54.662Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python文件操作">
-<meta name="twitter:description" content="上一篇博文中我们介绍了Python使用Mysql数据库进行数据存储，数据库存储的数据需要特定的工具进行打开，而普通的数据文件是一般的电脑都能打开进行查看的，因此数据库存储的通用性没有文件存储那么好，文件存储也是Python网络爬虫的常用存储方式之一，特别是csv文件，所以我们对于文件的输入输出流操作、缓存、基本的读写方式、文件迭代器等我们都需要有一些基本的了解，并熟练掌握文件的读写操作，为我们">
+<meta name="twitter:title" content="算法学习-刷题(十)">
+<meta name="twitter:description" content="继续使用Python进行算法练习解题，此篇博客的5道题依然来自于牛客网（专业IT笔试面试备考平台）在线编程之：华为机试在线训练(6-10题)。">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://fzy-line.github.io/2016/08/03/Python文件操作/"/>
+  <link rel="canonical" href="https://fzy-line.github.io/2016/12/04/算法学习-刷题-十/"/>
 
 
 
 
 
-  <title> Python文件操作 | Line's Blog </title>
+  <title> 算法学习-刷题(十) | Line's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -281,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/08/03/Python文件操作/">
+  <link itemprop="mainEntityOfPage" href="https://fzy-line.github.io/2016/12/04/算法学习-刷题-十/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Line">
@@ -305,7 +305,7 @@
             
             
               
-                Python文件操作
+                算法学习-刷题(十)
               
             
           </h1>
@@ -318,8 +318,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-03T10:26:21+08:00">
-                2016-08-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-04T22:32:12+08:00">
+                2016-12-04
               </time>
             
 
@@ -337,8 +337,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/算法学习/" itemprop="url" rel="index">
+                    <span itemprop="name">算法学习</span>
                   </a>
                 </span>
 
@@ -352,8 +352,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/08/03/Python文件操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/Python文件操作/" itemprop="commentCount"></span>
+                <a href="/2016/12/04/算法学习-刷题-十/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/04/算法学习-刷题-十/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,99 +384,77 @@
       
 
       
-        <p>　　上一篇博文中我们介绍了Python使用Mysql数据库进行数据存储，数据库存储的数据需要特定的工具进行打开，而普通的数据文件是一般的电脑都能打开进行查看的，因此数据库存储的通用性没有文件存储那么好，文件存储也是Python网络爬虫的常用存储方式之一，特别是csv文件，所以我们对于文件的输入输出流操作、缓存、基本的读写方式、文件迭代器等我们都需要有一些基本的了解，并熟练掌握文件的读写操作，为我们的爬虫实战打下坚实的基础。</p>
+        <p>　　继续使用Python进行算法练习解题，此篇博客的5道题依然来自于牛客网（专业IT笔试面试备考平台）在线编程之：华为机试在线训练(6-10题)。</p>
 <a id="more"></a>
-<h4 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h4><p>打开文件使用open函数，其中文件名是必选参数，文件模式和缓冲是可选参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">open(name[,mode[,buffering]])</div></pre></td></tr></table></figure>
-<!-- more --> 
-<h5 id="参数1：文件名"><a href="#参数1：文件名" class="headerlink" title="参数1：文件名"></a>参数1：文件名</h5><p>文件名一般采用绝对路径，其中会包含\字符，所以可在字符串前加r。</p>
-<p>‘r’是防止字符转义的，如果路径中出现’\t’的话，不加r的话\t就会被转义 而加了’r’之后’\t’就能保留原有的样子。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; s = &apos;C:\Python27\tcl&apos;</div><div class="line">&gt;&gt;&gt; print s</div><div class="line">C:\Python27     cl  #解释器将\t识别成一个制表符的间隔</div><div class="line">&gt;&gt;&gt; s = r&apos;C:\Python27\tcl&apos;</div><div class="line">&gt;&gt;&gt; print s</div><div class="line">C:\Python27\tcl     #不进行转义，正常输出</div></pre></td></tr></table></figure>
-<p>可见在字符串前加’r’才能正确使用文件路径</p>
-<h5 id="参数2：文件模式"><a href="#参数2：文件模式" class="headerlink" title="参数2：文件模式"></a>参数2：文件模式</h5><table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>‘r’</td>
-<td>读模式</td>
-<td>‘a’</td>
-<td>追加模式</td>
-</tr>
-<tr>
-<td>‘w’</td>
-<td>写模式</td>
-<td>‘b’</td>
-<td>二进制模式</td>
-</tr>
-<tr>
-<td>‘+’</td>
-<td>读/写模式</td>
-</tr>
-</tbody>
-</table>
-<h5 id="参数3：缓冲"><a href="#参数3：缓冲" class="headerlink" title="参数3：缓冲"></a>参数3：缓冲</h5><p>参数是0或者False，输入输出是无缓冲的</p>
-<p>参数是1或者True，输入输出是有缓冲的</p>
-<h4 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h4><h5 id="写入数据"><a href="#写入数据" class="headerlink" title="写入数据"></a>写入数据</h5><p>（1）以字符串形式写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#以写模式打开py.txt文件，若文件不存在，则会创建，若存在则覆盖文件原来的内容</div><div class="line">f = open(r&apos;D:\Python\py.txt&apos;,&apos;w&apos;)</div><div class="line">#写入Python之禅的前两句</div><div class="line">f.write(&apos;Beautiful is better than ugly.\n&apos;)</div><div class="line">f.write(&apos;Explicit is better than implicit.\n&apos;) </div><div class="line">f.flush()</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>成功写入之后，txt文件内容为以下两行：
-
-Beautiful is better than ugly.
-Explicit is better than implicit.
-</code></pre><p>（2）写入行</p>
-<p>writelines()将传递进来的一个字符串列表中的所有的字符串写入文件，但是不会增加新行，需要自己手动添加。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#采用追加模式，再向py.txt文件写入Python之禅的三四句</div><div class="line">f = open(r&apos;D:\Python\py.txt&apos;,&apos;a&apos;)</div><div class="line">content = [&apos;Simple is better than complex.\n&apos;,&apos;Complex is better than complicated.\n&apos;]</div><div class="line">f.writelines(content)   </div><div class="line">f.flush()</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>成功写入之后，txt文件内容为以下四行：
-
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-</code></pre><h5 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h5><p>（1）以字符串形式读取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">f = open(r&apos;D:\Python\py.txt&apos;,&apos;r&apos;)</div><div class="line">print f.read(6)   #读取6个字符</div><div class="line">print f.read()  #读取整个文件</div><div class="line">f.close()</div></pre></td></tr></table></figure></p>
-<pre><code>运行结果如下：
-
-Beauti
-ful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-
-可以看出，f.read(6)先读出了6个字符，然后f.read()将其余的内容全部读出来了。
-</code></pre><p>（2）读取行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(r&apos;D:\Python\py.txt&apos;,&apos;r&apos;)</div><div class="line">print f.readline()  #读取一行数据</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>readline()函数，读取一行，运行结果如下：
-Beautiful is better than ugly.
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(r&apos;D:\Python\py.txt&apos;,&apos;r&apos;)</div><div class="line">print f.readlines()   #读取文件的所有行</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>readlines()函数，读取一个文件的所有行，并将其作为列表返回，运行结果如下：
-[&apos;Beautiful is better than ugly.\n&apos;, &apos;Explicit is better than implicit.\n&apos;, &apos;Simple is better than complex.\n&apos;, &apos;Complex is better than complicated.\n&apos;]
-</code></pre><h4 id="对文件内容进行迭代"><a href="#对文件内容进行迭代" class="headerlink" title="对文件内容进行迭代"></a>对文件内容进行迭代</h4><h5 id="按字节处理"><a href="#按字节处理" class="headerlink" title="按字节处理"></a>按字节处理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename = r&apos;D:\Python\py.txt&apos;</div><div class="line">f = open(filename)</div><div class="line">while True:</div><div class="line">    char = f.read(1)    #每次读取一个字符</div><div class="line">    if not char: break  #没有字符可读了则停止</div><div class="line">    print char  #打印字符</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<h5 id="按行处理"><a href="#按行处理" class="headerlink" title="按行处理"></a>按行处理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename = r&apos;D:\Python\py.txt&apos;</div><div class="line">f = open(filename)</div><div class="line">while True:</div><div class="line">    line = f.readline().strip()  #读取一行，并去除空行</div><div class="line">    if not line: break  #如果没有下一行了则停止</div><div class="line">    print line  #打印读取到的一行</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>程序运行结果如下：
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-</code></pre><h5 id="使用fileinput实现懒惰行迭代"><a href="#使用fileinput实现懒惰行迭代" class="headerlink" title="使用fileinput实现懒惰行迭代"></a>使用fileinput实现懒惰行迭代</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import fileinput</div><div class="line">filename = r&apos;D:\Python\py.txt&apos;</div><div class="line">for line in fileinput.input(filename):</div><div class="line">    print line.strip()  #打印读取到的行，并去除空行</div></pre></td></tr></table></figure>
-<pre><code>程序运行结果同2
-</code></pre><h5 id="文件迭代器"><a href="#文件迭代器" class="headerlink" title="文件迭代器"></a>文件迭代器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">filename = r&apos;D:\Python\py.txt&apos;</div><div class="line">f = open(filename)</div><div class="line">for line in f:</div><div class="line">    print line.strip()  #打印读取到的行，并去除空行</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<pre><code>程序运行结果同2
-</code></pre><h4 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h4><p>写入过的文件总应该关闭，因为Python可能会缓存写入的数据，如果程序奔溃了，那么数据就不会被写入到文件，为了安全起见，在使用完文件后要进行关闭操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#打开文件</div><div class="line">try:</div><div class="line">    #写入数据</div><div class="line">finally:</div><div class="line">    file.close()</div></pre></td></tr></table></figure>
-<h4 id="csv文件处理"><a href="#csv文件处理" class="headerlink" title="csv文件处理"></a>csv文件处理</h4><p>逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。csv文件经常用于网络数据爬取的数据存储。csv文件可以用记事本和excel打开进行查看。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># -*- coding: utf-8 -*-</div><div class="line">import csv</div><div class="line"></div><div class="line">csvFile = open(&quot;D:/Python/data.csv&quot;,&apos;wb+&apos; )</div><div class="line">try:</div><div class="line">    writer = csv.writer(csvFile)</div><div class="line">    writer.writerow((&apos;Id&apos;,&apos;Name&apos;,&apos;Age&apos;))    #写入一行数据做列名</div><div class="line"></div><div class="line">    data = [(20160001,&apos;fzy&apos;,&apos;21&apos;),(20160002,&apos;lyj&apos;,&apos;21&apos;),(20160003,&apos;ljj&apos;,&apos;20&apos;)]</div><div class="line">    writer.writerows(data)  #写入多行</div><div class="line">    writer.writerow((20160004,&apos;cyx&apos;,&apos;24&apos;))  #写入一行数据</div><div class="line">finally:</div><div class="line">    csvFile.close()</div><div class="line"></div><div class="line">csvFile = open(&quot;D:/Python/data.csv&quot;,&apos;rb+&apos; )</div><div class="line">try:</div><div class="line">    reader = csv.reader(csvFile)</div><div class="line">    for line in reader:</div><div class="line">        print line</div><div class="line">finally:</div><div class="line">    csvFile.close()</div></pre></td></tr></table></figure>
-<pre><code>程序运行结果：
-[&apos;Id&apos;, &apos;Name&apos;, &apos;Age&apos;]
-[&apos;20160001&apos;, &apos;fzy&apos;, &apos;21&apos;]
-[&apos;20160002&apos;, &apos;lyj&apos;, &apos;21&apos;]
-[&apos;20160003&apos;, &apos;ljj&apos;, &apos;20&apos;]
-[&apos;20160004&apos;, &apos;cyx&apos;, &apos;24&apos;]
-</code></pre>
+<p>地址如下：<a href="https://www.nowcoder.com/ta/huawei" target="_blank" rel="external">https://www.nowcoder.com/ta/huawei</a></p>
+<h4 id="质数因子"><a href="#质数因子" class="headerlink" title="质数因子"></a>质数因子</h4><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>功能:输入一个正整数，按照从小到大的顺序输出它的所有质数的因子（如180的质数因子为2 2 3 3 5 ）,最后一个数后面也要有空格</p>
+<p>详细描述：</p>
+<p>函数接口说明：</p>
+<p>public String getResult(long ulDataInput)</p>
+<p>输入参数：</p>
+<p>long ulDataInput：输入的正整数</p>
+<p>返回值：</p>
+<p>String</p>
+<p>输入描述:</p>
+<p>输入一个long型整数</p>
+<p>输出描述:</p>
+<p>按照从小到大的顺序输出它的所有质数的因子，以空格隔开。最后一个数后面也要有空格。</p>
+<p>输入例子:</p>
+<p>180</p>
+<p>输出例子:</p>
+<p>2 2 3 3 5</p>
+<h5 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h5><p>如果一个数是质数，那么它的倍数都不是质数。</p>
+<p>我们不需要考虑是否是质数因子，因为每次得到的那个因子肯定是质数因子，其他数都可以从这些质数因子相乘得到。比如，i = 4能被整除的不可能出现，因为当i=2时已经被全求出来了。</p>
+<p>这个题的思路其实不太好描述，还是看代码吧！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">while True:</div><div class="line">    try:</div><div class="line">        n = int(raw_input())</div><div class="line">        i = 2</div><div class="line">        while n&gt;1:</div><div class="line">            while(n%i == 0):</div><div class="line">                print i,    </div><div class="line">                n = n/i</div><div class="line">            i += 1</div><div class="line">             </div><div class="line">    except:</div><div class="line">        break</div></pre></td></tr></table></figure>
+<p>python中print输出一行，如果想多次输出的内容不换行，可以在print后面加逗号.</p>
+<h4 id="取近似值"><a href="#取近似值" class="headerlink" title="取近似值"></a>取近似值</h4><h5 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h5><p>写出一个程序，接受一个正浮点数值，输出该数值的近似整数值。如果小数点后数值大于等于5,向上取整；小于5，则向下取整。</p>
+<p>输入描述:</p>
+<p>输入一个正浮点数值</p>
+<p>输出描述:</p>
+<p>输出该数值的近似整数值</p>
+<p>输入例子:</p>
+<p>5.5</p>
+<p>输出例子:</p>
+<p>6</p>
+<h5 id="Python实现-1"><a href="#Python实现-1" class="headerlink" title="Python实现"></a>Python实现</h5><p>将输入的数据转换成float类型，再用round函数进行四舍五入，最后转换成int类型进行输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import sys</div><div class="line">num = sys.stdin.readline()  #读取一行数据</div><div class="line">print int(round(float(num)))</div></pre></td></tr></table></figure>
+<h4 id="合并表记录"><a href="#合并表记录" class="headerlink" title="合并表记录"></a>合并表记录</h4><h5 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h5><p>数据表记录包含表索引和数值，请对表索引相同的记录进行合并，即将相同索引的数值进行求和运算，输出按照key值升序进行输出。</p>
+<p>输入描述:</p>
+<p>先输入键值对的个数，然后输入成对的index和value值，以空格隔开</p>
+<p>输出描述:</p>
+<p>输出合并后的键值对（多行）</p>
+<p>输入例子:</p>
+<p>4</p>
+<p>0 1</p>
+<p>0 2</p>
+<p>1 2</p>
+<p>3 4</p>
+<p>输出例子:</p>
+<p>0 3</p>
+<p>1 2</p>
+<p>3 4</p>
+<h5 id="Python实现-2"><a href="#Python实现-2" class="headerlink" title="Python实现"></a>Python实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line">n = int(raw_input())</div><div class="line">dic = &#123;&#125;    #构造字典</div><div class="line">for i in range(n):</div><div class="line">    item = raw_input().split()  #获取一行输入</div><div class="line">    key = int(item[0])  #得到该行的第一个数：键</div><div class="line">    value = int(item[1])    #得到该行的第二个数：值</div><div class="line">    if key in dic:  #如果字典中已经存在这个键，则将其键值相加</div><div class="line">        dic[key] += value;</div><div class="line">    else:   #否则添加新的键值对</div><div class="line">        dic[key] = value;</div><div class="line"></div><div class="line">lst = dic.keys()    #获取字典的所有键</div><div class="line">lst.sort()  #对键进行排序</div><div class="line"></div><div class="line">for i in lst:   #根据键从小到大输出</div><div class="line">    print i,dic[i]</div></pre></td></tr></table></figure>
+<h4 id="提取不重复的整数"><a href="#提取不重复的整数" class="headerlink" title="提取不重复的整数"></a>提取不重复的整数</h4><h5 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h5><p>输入一个int型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。</p>
+<p>输入描述:</p>
+<p>输入一个int型整数</p>
+<p>输出描述:</p>
+<p>按照从右向左的阅读顺序，返回一个不含重复数字的新的整数</p>
+<p>输入例子:</p>
+<p>9876673</p>
+<p>输出例子:</p>
+<p>37689</p>
+<h5 id="Python实现-3"><a href="#Python实现-3" class="headerlink" title="Python实现"></a>Python实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line">input_str = raw_input()</div><div class="line">res = []    </div><div class="line">for i in list(reversed(input_str)):    #反转字符串，并将其转换从列表</div><div class="line">    if i not in res:    #去除重复的数字</div><div class="line">        res.append(i)</div><div class="line">print &quot;&quot;.join(res)    #列表转字符串</div></pre></td></tr></table></figure>
+<h4 id="字符个数统计"><a href="#字符个数统计" class="headerlink" title="字符个数统计"></a>字符个数统计</h4><h5 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h5><p>编写一个函数，计算字符串中含有的不同字符的个数。字符在ACSII码范围内(0~127)。不在范围内的不作统计。</p>
+<p>输入描述:</p>
+<p>输入N个字符，字符在ACSII码范围内。</p>
+<p>输出描述:</p>
+<p>输出范围在(0~127)字符的个数。</p>
+<p>输入例子:</p>
+<p>abc</p>
+<p>输出例子:</p>
+<p>3</p>
+<h5 id="Python实现-4"><a href="#Python实现-4" class="headerlink" title="Python实现"></a>Python实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#-*- coding:utf-8 -*-</div><div class="line">import sys</div><div class="line"></div><div class="line">def count(input_str):   #自定义处理函数</div><div class="line">    s = []</div><div class="line">    cnt = 0</div><div class="line">    for ch in input_str:    #去除重复的字符</div><div class="line">        if ch not in s:</div><div class="line">            s.append(ch)</div><div class="line"></div><div class="line">    for c in s:     #统计个数</div><div class="line">        if (ord(c) &gt;=0 and ord(c) &lt;= 127):</div><div class="line">            cnt+=1</div><div class="line"></div><div class="line">    print cnt</div><div class="line"></div><div class="line">input_str = sys.stdin.readline()    #根据题目要求要实现多组数据的测试</div><div class="line">count(input_str)    #调用函数处理</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -522,7 +500,9 @@ Complex is better than complicated.
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/文件/" rel="tag"># 文件</a>
+            <a href="/tags/算法学习/" rel="tag"># 算法学习</a>
+          
+            <a href="/tags/华为机试/" rel="tag"># 华为机试</a>
           
         </div>
       
@@ -531,8 +511,8 @@ Complex is better than complicated.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/29/Android数据存储之文件存储/" rel="next" title="Android数据存储之文件存储">
-                <i class="fa fa-chevron-left"></i> Android数据存储之文件存储
+              <a href="/2016/12/03/算法学习-刷题-九/" rel="next" title="算法学习-刷题(九)">
+                <i class="fa fa-chevron-left"></i> 算法学习-刷题(九)
               </a>
             
           </div>
@@ -540,10 +520,6 @@ Complex is better than complicated.
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/05/Android-Http网络请求/" rel="prev" title="Android Http网络请求">
-                Android Http网络请求 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,10 +534,10 @@ Complex is better than complicated.
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/03/Python文件操作/"
-     data-title="Python文件操作"
+        <div class="ds-share flat" data-thread-key="2016/12/04/算法学习-刷题-十/"
+     data-title="算法学习-刷题(十)"
      data-content=""
-     data-url="https://fzy-line.github.io/2016/08/03/Python文件操作/">
+     data-url="https://fzy-line.github.io/2016/12/04/算法学习-刷题-十/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -588,8 +564,8 @@ Complex is better than complicated.
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/03/Python文件操作/"
-           data-title="Python文件操作" data-url="https://fzy-line.github.io/2016/08/03/Python文件操作/">
+      <div class="ds-thread" data-thread-key="2016/12/04/算法学习-刷题-十/"
+           data-title="算法学习-刷题(十)" data-url="https://fzy-line.github.io/2016/12/04/算法学习-刷题-十/">
       </div>
     
   </div>
@@ -724,7 +700,7 @@ Complex is better than complicated.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#打开文件"><span class="nav-number">1.</span> <span class="nav-text">打开文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参数1：文件名"><span class="nav-number">1.1.</span> <span class="nav-text">参数1：文件名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数2：文件模式"><span class="nav-number">1.2.</span> <span class="nav-text">参数2：文件模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数3：缓冲"><span class="nav-number">1.3.</span> <span class="nav-text">参数3：缓冲</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件读写"><span class="nav-number">2.</span> <span class="nav-text">文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写入数据"><span class="nav-number">2.1.</span> <span class="nav-text">写入数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#读取数据"><span class="nav-number">2.2.</span> <span class="nav-text">读取数据</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对文件内容进行迭代"><span class="nav-number">3.</span> <span class="nav-text">对文件内容进行迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#按字节处理"><span class="nav-number">3.1.</span> <span class="nav-text">按字节处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按行处理"><span class="nav-number">3.2.</span> <span class="nav-text">按行处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用fileinput实现懒惰行迭代"><span class="nav-number">3.3.</span> <span class="nav-text">使用fileinput实现懒惰行迭代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件迭代器"><span class="nav-number">3.4.</span> <span class="nav-text">文件迭代器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭文件"><span class="nav-number">4.</span> <span class="nav-text">关闭文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#csv文件处理"><span class="nav-number">5.</span> <span class="nav-text">csv文件处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#质数因子"><span class="nav-number">1.</span> <span class="nav-text">质数因子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Python实现"><span class="nav-number">1.2.</span> <span class="nav-text">Python实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取近似值"><span class="nav-number">2.</span> <span class="nav-text">取近似值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Python实现-1"><span class="nav-number">2.2.</span> <span class="nav-text">Python实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并表记录"><span class="nav-number">3.</span> <span class="nav-text">合并表记录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Python实现-2"><span class="nav-number">3.2.</span> <span class="nav-text">Python实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取不重复的整数"><span class="nav-number">4.</span> <span class="nav-text">提取不重复的整数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Python实现-3"><span class="nav-number">4.2.</span> <span class="nav-text">Python实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符个数统计"><span class="nav-number">5.</span> <span class="nav-text">字符个数统计</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Python实现-4"><span class="nav-number">5.2.</span> <span class="nav-text">Python实现</span></a></li></ol></li></ol></div>
             
 
           </div>
